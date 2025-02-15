@@ -1,18 +1,19 @@
-# Project Order System
+# Project Order System ![Documentation Status](https://img.shields.io/badge/docs-in%20progress-yellow)
 
-# Implemented Flow
 
-## Queues
+## Implemented Flow
+
+### Queues
 
 order-queue: Main queue where messages are published.
 
 order-dlq: Dead-letter queue where messages are sent after the maximum number of retries.
 
-## Producer
+### Producer
 
 Publishes messages to the order-queue.
 
-## Consumer
+### Consumer
 
 Consumes messages from the order-queue.
 
@@ -20,7 +21,7 @@ If the message is invalid (e.g., amount < 0), it throws an exception to trigger 
 
 After 3 retries, the message is sent to the order-dlq by the RepublishMessageRecoverer.
 
-## Retry Configuration
+### Retry Configuration
 
 Configured in RabbitMQConfig using RetryOperationsInterceptor and RepublishMessageRecoverer.
 
