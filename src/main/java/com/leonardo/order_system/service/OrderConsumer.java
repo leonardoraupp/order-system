@@ -12,7 +12,7 @@ public class OrderConsumer {
     @RabbitListener(queues = "order-queue")
     public void receiveOrder(Order order) throws IllegalAccessException {
         if (order.getAmount() < 0) {
-            log.warn("Invalid order received.", order);
+            log.warn("Invalid order received: {} ", order);
             throw new IllegalAccessException("Invalid order amount.");
         } else {
             log.info("Processing valid order: {}", order);

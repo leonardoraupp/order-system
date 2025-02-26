@@ -79,7 +79,7 @@ public class RabbitMQConfig {
     public RetryOperationsInterceptor retryInterceptor(RabbitTemplate rabbitTemplate) {
         return RetryInterceptorBuilder.stateless()
                 .maxAttempts(3)
-                .backOffOptions(1000, 2.0, 10000) // in milliseconds.
+                .backOffOptions(1000, 2.0, 10000) // BackOff( Exponential time of reprocessing)
                 .recoverer(new RepublishMessageRecoverer(rabbitTemplate, "order-dlx", "order-dlq")) // Move to DLQ after 3 attempts.
                 .build();
     }
