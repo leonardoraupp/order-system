@@ -1,8 +1,15 @@
 # Project Order System ![Documentation Status](https://img.shields.io/badge/docs-in%20progress-yellow)
 
 
-## Implemented Flow
+## JWT Authentication and Authorization
+### Controllers
 
+- /auth/register: Register an user.
+- /auth/authenticate: Authenticate an valid user and provides a new JWT token.
+
+Any other endpoint access is necessary be authenticated and with the necessary authorization.
+
+## RabbitMQ Messaging 
 ### Queues
 
 order-queue: Main queue where messages are published.
