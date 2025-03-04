@@ -3,12 +3,14 @@ spring:
     name: order-system
   datasource:
     url: jdbc:postgresql://localhost:5432/order_system
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    username: admin
+    password: admin123
   jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
     show-sql: true
+    format-sql: true
   rabbitmq:
     host: localhost
     port: 5672
