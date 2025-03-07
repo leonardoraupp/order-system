@@ -9,23 +9,18 @@ import lombok.ToString;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
+@Entity()
+@Table(name = "roles")
 @Data
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "users")
-public class User {
-    @Id
+@ToString
+public class UserRole {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     private Long id;
-
-    @Column(unique = true, nullable = false)
-    private String username;
-
-    @Column(nullable = false)
-    private String password;
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<UserRole> roles = new HashSet<>();
+    private String name;
+    
+    @OneToMany(mappedBy = "roles")
+    private Set<User> users = new HashSet<>();
 }

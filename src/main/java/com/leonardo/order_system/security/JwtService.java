@@ -6,6 +6,7 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
@@ -15,7 +16,9 @@ import java.util.function.Function;
 @Component
 public class JwtService {
 
-    private static final Key SECRET_KEY = Keys.secretKeyFor(io.jsonwebtoken.SignatureAlgorithm.HS256);
+    //    private static final Key SECRET_KEY = Keys.secretKeyFor(io.jsonwebtoken.SignatureAlgorithm.HS256);
+    private static String KEY = System.getenv("JWT_SECRET");
+    private static final Key SECRET_KEY = Keys.hmacShaKeyFor(KEY.getBytes(StandardCharsets.UTF_8));
     private static final long EXPIRATION_TIME = 864_000_000; // 10 days
 
     public String generateToken(UserDetails userDetails) {
