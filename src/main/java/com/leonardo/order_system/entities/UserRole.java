@@ -1,5 +1,7 @@
 package com.leonardo.order_system.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.leonardo.order_system.dto.UserRoleDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,7 +22,13 @@ public class UserRole {
     @Id
     private Long id;
     private String name;
-    
-    @OneToMany(mappedBy = "roles")
+
+    @ManyToMany(mappedBy = "roles")
+    @JsonIgnore
     private Set<User> users = new HashSet<>();
+
+    public UserRole(UserRoleDTO userRoleDTO) {
+        this.id = userRoleDTO.getId();
+        this.name = userRoleDTO.getName();
+    }
 }

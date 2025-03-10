@@ -1,6 +1,6 @@
 package com.leonardo.order_system.controller;
 
-import com.leonardo.order_system.dto.AuthRequest;
+import com.leonardo.order_system.dto.UserDTO;
 import com.leonardo.order_system.entities.User;
 import com.leonardo.order_system.security.JwtService;
 import com.leonardo.order_system.service.UserDetailsServiceImpl;
@@ -43,7 +43,7 @@ public class AuthController {
     }
 
     @PostMapping("/authenticate")
-    public ResponseEntity<String> authenticate(@RequestBody AuthRequest request) {
+    public ResponseEntity<String> authenticate(@RequestBody UserDTO request) {
         try {
             log.info("Authenticating  user: {}", request.getUsername());
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(

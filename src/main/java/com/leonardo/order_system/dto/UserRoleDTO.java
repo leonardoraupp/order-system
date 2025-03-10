@@ -5,11 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-@Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Data
 @Component
-public class AuthRequest {
-    private String username;
-    private String password;
+public class UserRoleDTO {
+    private Long id;
+    private String name;
 }
