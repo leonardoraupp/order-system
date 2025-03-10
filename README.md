@@ -10,6 +10,29 @@ docker-compose up -d
 ```
 - Run the application order-system
 
+  ## Testing
+
+  ### Register user:
+
+  /auth/register
+
+  ```json
+  {
+    "username": "Leonardo",
+    "password": "leonardo123"
+  }
+  ```
+
+    ### Authenticate user:
+
+  /auth/authenticate
+
+  ```json
+  {
+    "username": "Leonardo",
+    "password": "leonardo123"
+  }
+  ```
 
 
 ## JWT Authentication and Authorization
