@@ -6,6 +6,8 @@
 
 - /auth/register: Register an user.
 - /auth/authenticate: Authenticate an valid user and provides a new JWT token.
+- /users: Actions on user entity.
+- /roles: Actions on user roles entity.
 
 Any other endpoint access is necessary be authenticated and with the necessary authorization.
 
