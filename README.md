@@ -16,6 +16,8 @@ docker-compose up -d
 
   /auth/register
 
+  User data:
+
   ```json
   {
     "username": "Leonardo",
@@ -23,17 +25,45 @@ docker-compose up -d
   }
   ```
 
-    ### Authenticate user:
+  ### Authenticate user:
 
   /auth/authenticate
 
+  User data:
+
+    ```json
+    {
+      "username": "Leonardo",
+      "password": "leonardo123"
+    }
+    ```
+  
+  Get the token from the response and set on Authorization  header as Bearer Token type for the next requests on other endpoints.
+
+    ### Create user role:
+
+  /roles
+
+  User role data:
+  
   ```json
   {
-    "username": "Leonardo",
-    "password": "leonardo123"
+    "name": "ADMIN"
   }
   ```
 
+    ### Bind a  user role to a user:
+
+  /users/{userID}/roles
+
+  User role data:
+
+    ```json
+    {
+      "id": 1,
+      "name": "ADMIN"
+    }
+    ```
 
 ## JWT Authentication and Authorization
 ### Controllers
