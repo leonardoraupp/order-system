@@ -1,6 +1,17 @@
 # Project Order System ![Documentation Status](https://img.shields.io/badge/docs-in%20progress-yellow)
 
 
+## Running the project
+- First, necessary to up the containers for the database, RabbitMQ and other dependencies.
+  
+```bash
+cd order_system project folder
+docker-compose up -d
+```
+- Run the application order-system
+
+
+
 ## JWT Authentication and Authorization
 ### Controllers
 
