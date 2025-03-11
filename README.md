@@ -52,7 +52,7 @@ docker-compose up -d
   }
   ```
 
-    ### Bind a  user role to a user:
+    ### Assign user role to user:
 
   /users/{userID}/roles
 
