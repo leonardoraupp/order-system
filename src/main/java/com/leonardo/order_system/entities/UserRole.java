@@ -6,9 +6,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity()
@@ -16,7 +16,6 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class UserRole {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -30,5 +29,36 @@ public class UserRole {
     public UserRole(UserRoleDTO userRoleDTO) {
         this.id = userRoleDTO.getId();
         this.name = userRoleDTO.getName();
+    }
+
+    public void removeUsers(User user) {
+        users.remove(user);
+        user.removeRoles(this);
+    }
+
+    public void addUsers(User user) {
+        users.add(user);
+        user.addRoles(this);
+
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object == null || getClass() != object.getClass()) return false;
+        UserRole userRole = (UserRole) object;
+        return Objects.equals(id, userRole.id) && Objects.equals(name, userRole.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
+    }
+
+    @Override
+    public String toString() {
+        return "UserRole{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

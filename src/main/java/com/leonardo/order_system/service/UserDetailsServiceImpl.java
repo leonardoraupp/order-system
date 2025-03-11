@@ -5,8 +5,8 @@ import com.leonardo.order_system.dto.UserRoleDTO;
 import com.leonardo.order_system.entities.User;
 import com.leonardo.order_system.entities.UserRole;
 import com.leonardo.order_system.repositories.UserRepository;
+import com.leonardo.order_system.repositories.UserRoleRepository;
 import com.leonardo.order_system.security.CustomUserDetails;
-import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,10 +25,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private UserRepository userRepository;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private UserRoleRepository userRoleRepository;
 
     @Autowired
-    private UserRoleService userRoleService;
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -74,12 +74,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return newUser;
     }
 
-    @Transactional
     public User addRole(String userId, UserRoleDTO userRoleDTO) {
-        UserRole userRole = userRoleService.findById(userRoleDTO.getId());
+        UserRole userRole = userRoleRepository.findById(userRoleDTO.getId()).orElseThrow(() -> {
+            throw new RuntimeException("User role not found.");
+        });
         User user = findUserById(userId);
-        user.getRoles().add(userRole);
-//        userRepository.save(user);
+        user.addRoles(userRole);
+        userRepository.save(user);
         return user;
     }
 }
